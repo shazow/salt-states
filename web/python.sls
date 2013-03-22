@@ -10,7 +10,7 @@ pillow:
     pip.installed:
         - name: pillow
         - require:
-            - pkg: pil-deps
+            - pkg: pillow-deps
             - pkg: python
 
 python:
