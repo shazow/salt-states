@@ -5,6 +5,16 @@ nginx:
     service.running:
         - enable: True
 
-default-nginx:
-    file.absent:
-            - name: /etc/nginx/sites-enabled/default
+
+nginx:
+    service.running:
+        - enable: True
+        - reload: True
+        - watch:
+            - file: /etc/nginx/nginx.conf
+            - file: /etc/nginx/sites-enabled/*
+            - pkg: nginx
+
+
+/etc/nginx/sites-enabled/default:
+    file.absent
