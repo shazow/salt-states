@@ -21,7 +21,7 @@ nginx:
 
 
 {% for project in pillar['projects'] %}
-/etc/nginx/projects-available/{{ project.name }}.conf:
+/etc/nginx/sites-available/{{ project.name }}.conf:
     file.managed:
         - source: salt://web/nginx/site.conf.jinja
         - template: jinja
