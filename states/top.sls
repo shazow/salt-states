@@ -1,7 +1,7 @@
 base:
-    '*':
-        - ssh
-        - common
-        - nginx
-        - web.python
-        - web.nginx
+  '*':
+    - ssh
+    - common
+    - nginx
+    - web.python
+    - web.nginx
