@@ -1,3 +1,5 @@
+backup_mode: minion
+
 file_roots:
   base:
     - /srv/salt/states
