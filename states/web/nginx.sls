@@ -1,12 +1,13 @@
-# More good stuff here: https://github.com/oc/roninku/tree/master/states/nginx
 nginx:
-    pkg.installed:
-        - name: nginx
+    pkg:
+        - installed
     service.running:
+        - name: nginx
         - enable: True
         - reload: True
         - watch:
-            - file: /etc/nginx/sites-enabled/*
+            - file: /etc/nginx/nginx.conf
+            - file: /etc/nginx/sites-enabled/* # FIXME: This doesn't work?
 
 
 /etc/nginx/sites-enabled/default:
