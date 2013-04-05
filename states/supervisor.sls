@@ -19,7 +19,7 @@ supervisor:
       - service: supervisor
     - require:
       - pkg: supervisor
-      - file: /home/{{ project.user }}/projects/{{ project.name }}/env
-      - file: /home/{{ project.user }}/projects/{{ project.name }}/repo
-      - file: /home/{{ project.user }}/projects/{{ project.name }}/logs
+      - virtualenv: /home/{{ project.user }}/projects/{{ project.name }}/env
+      - cmd: /home/{{ project.user }}/projects/{{ project.name }}/repo
+      - directory: /home/{{ project.user }}/projects/{{ project.name }}/logs
 {% endfor %}
