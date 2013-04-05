@@ -7,7 +7,7 @@ supervisor:
 {% for project in pillar['projects'] %}
 /etc/supervisor/conf.d/{{ project.name}}.conf:
   file.managed:
-    - source: salt://project/supervisor/supervisor.conf.jinja
+    - source: salt://supervisor/supervisor.conf.jinja
     - template: jinja
     - defaults:
         name: {{ project.name }}
