@@ -11,13 +11,15 @@ nginx:
 {% for project in pillar['projects'] %}
 /etc/nginx/sites-available/{{ project.name }}:
   file.managed:
+    - require:
+      - pkg: nginx
     - watch_in:
       - service: nginx
     - source: salt://web/nginx/site.conf.jinja
     - template: jinja
     - defaults:
-      name: {{ project.name }}
-      domain: {{ project.domain }}
-      access_log: /home/{{ project.user }}/logs/{{ project.name }}/access.log
-      root_dir: /home/{{ project.user }}/public_html/{{ project.name }}/
+        name: {{ project.name }}
+        domain: {{ project.domain }}
+        access_log: /home/{{ project.user }}/logs/{{ project.name }}/access.log
+        root_dir: /home/{{ project.user }}/public_html/{{ project.name }}/
 {% endfor %}

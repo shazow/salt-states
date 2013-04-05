@@ -62,8 +62,8 @@
     - group: {{ project.group }}
     - mode: 750
     - defaults:
-      name: {{ project.name }}
-      virtualenv_path: /home/{{ project.user }}/projects/{{ project.name }}/env
+        name: {{ project.name }}
+        virtualenv_path: /home/{{ project.user }}/projects/{{ project.name }}/env
     - require:
       - cmd: /home/{{ project.user }}/projects/{{ project.name }}/repo
       - pkg: uwsgi
