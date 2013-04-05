@@ -21,5 +21,5 @@ supervisor:
       - pkg: supervisor
       - virtualenv: /home/{{ project.user }}/projects/{{ project.name }}/env
       - cmd: /home/{{ project.user }}/projects/{{ project.name }}/repo
-      - directory: /home/{{ project.user }}/projects/{{ project.name }}/logs
+      - file: /home/{{ project.user }}/projects/{{ project.name }}/logs
 {% endfor %}
