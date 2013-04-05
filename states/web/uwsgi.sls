@@ -1,11 +1,7 @@
-uwsgi-repo:
-  pkgrepo.managed:
-    - human_name: ppa:uwsgi/release
-    - ppa: uwsgi/release
-
-
 uwsgi:
+  pkgrepo.managed:
+    - ppa: uwsgi/release
+    - require_in:
+      - pkg: uwsgi
   pkg.installed:
     - name: uwsgi
-    - require:
-      - pkgrepo: uwsgi-repo
