@@ -5,3 +5,4 @@ base:
     - nginx
     - web.python
     - web.nginx
+    - project

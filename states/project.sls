@@ -67,6 +67,5 @@
     - require:
       - cmd: /home/{{ project.user }}/projects/{{ project.name }}/repo
       - pkg: uwsgi
-{%- endif %}
 
 {% endfor %}
