@@ -1,22 +1,18 @@
 nginx:
-  pkg:
-    - installed
-  service.running:
+  pkg.installed:
     - name: nginx
+  service.running:
     - enable: True
     - reload: True
-    - watch:
-      - file: /etc/nginx/nginx.conf
-      - file: /etc/nginx/sites-enabled/* # FIXME: This doesn't work?
-
 
 /etc/nginx/sites-enabled/default:
   file.absent
 
-
 {% for project in pillar['projects'] %}
 /etc/nginx/sites-available/{{ project.name }}:
   file.managed:
+    - watch_in:
+      - service: nginx
     - source: salt://web/nginx/site.conf.jinja
     - template: jinja
     - defaults:

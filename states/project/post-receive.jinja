@@ -1,0 +1,53 @@
+!/bin/bash
+# post-receive hook to push-deploy into a git repo.
+#
+# Deploy by pushing $DEPLOY_BRANCH
+# Rollback by force-pushing a new reference to $OVERRIDE_TAG
+#
+# 1. Setup your git repo:
+#
+#     git init --separate-git-dir=$REPO_DIR $DEPLOY_DIR
+#
+# 2. Put this hook script in $REPO_DIR/hooks/post-receive
+# 3. Push to $REPO_DIR
+#
+# Enjoy.
+
+## Configuration:
+
+OVERRIDE_TAG="refs/tags/deploy-override"
+DEPLOY_BRANCH="live"
+
+
+## Helpers:
+
+function indent() {
+    sed 's/^/    /'
+}
+
+
+##
+
+if [ "$(tail | cut -d ' ' -f3)" == "$OVERRIDE_TAG" ]; then
+    echo "Rolling back to new $OVERRIDE_TAG:"
+    git show "$OVERRIDE_TAG" | indent
+    git checkout -q -f "$OVERRIDE_TAG"
+else
+    echo "Deploying $DEPLOY_BRANCH."
+    git checkout -q -f "$DEPLOY_BRANCH"
+fi
+
+
+## Custom post-deploy logic
+INI_FILE="production.ini"
+
+cd "$(git config --get core.worktree)"
+
+. {{ virtualenv_path }}/bin/activate
+make -e "INI_FILE=$INI_FILE"
+
+UWSGI_PID=/tmp/{{ name }}-uwsgi.pid
+if [ -f "$UWSGI_PID" ]; then
+        echo "Restarting uwsgi.";
+        kill -HUP $(cat $UWSGI_PID);
+fi
