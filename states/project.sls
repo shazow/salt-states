@@ -42,14 +42,21 @@
       - file: /home/{{ project.user }}/projects/{{ project.name }}
 {% endfor %}
 
+/home/{{ project.user }}/projects/{{ project.name }}/env:
+  virtualenv.manage:
+    - prompt: {{ project.name }}
+    - runas: {{ project.user }}
+    - require:
+      - pkg: python-virtualenv
+      - file: /home/{{ project.user }}/projects/{{ project.name }}
+
 /home/{{ project.user }}/projects/{{ project.name }}/repo:
   cmd.run:
     - name: git init --separate-git-dir=repo deploy
-    - unless: ls /home/{{ project.user }}/{{ project.name }}/repo/config
+    - unless: ls /home/{{ project.user }}/projects/{{ project.name }}/repo/config
     - user: {{ project.user }}
     - group: {{ project.group }}
     - cwd: /home/{{ project.user }}/projects/{{ project.name }}
-    - shell: /bin/bash
     - require:
       - pkg: git
       - file: /home/{{ project.user }}/projects/{{ project.name }}
@@ -67,5 +74,7 @@
     - require:
       - cmd: /home/{{ project.user }}/projects/{{ project.name }}/repo
       - pkg: uwsgi
-
+  cmd.run:
+    - name: git config receive.denycurrentbranch ignore
+    - cwd: /home/{{ project.user }}/projects/{{ project.name }}/repo
 {% endfor %}

@@ -2,7 +2,8 @@ base:
   '*':
     - ssh
     - common
-    - web.python
+    - python
+    - supervisor
     - web.nginx
     - web.uwsgi
     - project

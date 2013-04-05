@@ -20,4 +20,3 @@ python:
       - python-software-properties
       - python-virtualenv
       - python-pip
-      - supervisor
