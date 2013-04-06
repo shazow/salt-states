@@ -1,8 +1,7 @@
 postgresql-repo:
   pkgrepo.managed:
     - human_name: ppa:pitti/postgresql
-    - ppa: uwsgi/release
-
+    - ppa: pitti/postgresql
 
 postgresql:
   pkg.installed:

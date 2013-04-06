@@ -7,3 +7,4 @@ base:
     - supervisor
     - web.nginx
     - web.uwsgi
+    - db.postgresql
