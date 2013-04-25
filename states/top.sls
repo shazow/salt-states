@@ -8,3 +8,4 @@ base:
     - web.nginx
     - web.uwsgi
     - db.postgresql
+    #- db.redis
