@@ -1,11 +1,9 @@
 /etc/logrotate.d/projects:
   file.managed:
-    - source: salt://project/projects.jinja
+    - source: salt://project/logrotate.jinja
     - template: jinja
     - defaults:
-        project_path: /home/{{ project.user }}/projects
-        user: {{ project.user }}
-        group: {{ project.group }}
+        projects: {{ pillar['projects'] }}
     - require:
       - pkg: logrotate
 

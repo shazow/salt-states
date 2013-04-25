@@ -1,4 +1,5 @@
-"{{ projects_path }}/*/logs/*.log" {
+{% for project in projects %}
+"/home/{{ project.user }}/projects/{{ project.name }}/logs/*.log":
   copytruncate
   monthly
   rotate 12
@@ -6,5 +7,6 @@
   delaycompress
   missingok
   notifempty
-  create 660 {{ user }} {{ group }}
+  create 660 {{ project.user }} {{ project.group }}
 }
+{% endfor %}
