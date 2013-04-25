@@ -7,6 +7,7 @@ packages:
       - fail2ban
       - git
       - htop
+      - iptables
       - logrotate
       - lsof
       - mailutils
