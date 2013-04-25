@@ -4,6 +4,7 @@ packages:
       - build-essential
       - cron
       - curl
+      - fail2ban
       - git
       - htop
       - logrotate
@@ -14,3 +15,10 @@ packages:
       - ntp
       - tmux
       - vim
+
+
+/etc/iptables.firewall.rules:
+  file.managed:
+    - source: salt://common/iptables.firewall.rules
+    - require:
+      - pkg: iptables
