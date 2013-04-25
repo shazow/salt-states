@@ -1,0 +1,10 @@
+"{{ projects_path }}/*/logs/*.log" {
+  copytruncate
+  monthly
+  rotate 12
+  compress
+  delaycompress
+  missingok
+  notifempty
+  create 660 {{ user }} {{ group }}
+}
