@@ -17,8 +17,22 @@ packages:
       - vim
 
 
-/etc/iptables.firewall.rules:
+/etc/iptables.rules:
   file.managed:
-    - source: salt://common/iptables.firewall.rules
+    - source: salt://common/iptables.rules
     - require:
       - pkg: iptables
+  cmd.wait:
+    - name: iptables-restore < /etc/iptables.rules
+    - watch:
+      - file: /etc/iptables.rules
+    - require:
+      - pkg: iptables
+
+
+/etc/network/if-pre-up.d/firewall:
+  file.managed:
+    - source: salt://common/iptables_restore
+    - mode: 755
+    - require:
+      - file: /etc/iptables.rules
