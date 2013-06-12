@@ -83,7 +83,7 @@
         virtualenv_path: /home/{{ project.user }}/projects/{{ project.name }}/env
     - require:
       - cmd: /home/{{ project.user }}/projects/{{ project.name }}/repo
-      - pkg: uwsgi
+      - pip: uwsgi
   cmd.run:
     - name: git config receive.denycurrentbranch ignore
     - cwd: /home/{{ project.user }}/projects/{{ project.name }}/repo
