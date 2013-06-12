@@ -1,3 +1,2 @@
 uwsgi:
-  pkg.installed:
-    - name: uwsgi
+  pip.installed

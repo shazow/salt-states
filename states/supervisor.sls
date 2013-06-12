@@ -3,11 +3,12 @@ supervisor:
     - name: supervisor
   service.running:
     - enable: True
+    - restart: True
 
 {% for project in pillar['projects'] %}
 /etc/supervisor/conf.d/{{ project.name}}.conf:
   file.managed:
-    - source: salt://supervisor/supervisor.conf.jinja
+    - source: salt://supervisor/uwsgi.conf.jinja
     - template: jinja
     - defaults:
         name: {{ project.name }}

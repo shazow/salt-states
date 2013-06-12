@@ -1,0 +1,61 @@
+bitcoin-repo:
+  pkgrepo.managed:
+    - human_name: ppa:bitcoin/bitcoin
+    - ppa: bitcoin/bitcoin
+    - keyid: 0E27C0A6
+    - keyserver: keyserver.ubuntu.com
+
+bitcoind:
+  pkg.installed:
+    - names:
+      - bitcoind
+    - require:
+      - pkgrepo: bitcoin-repo
+
+bitcoin:
+  user.present:
+    - home: /home/bitcoin
+
+/home/bitcoin:
+  file.directory:
+    - user: bitcoin
+    - group: bitcoin
+    - mode: 750
+    - makedirs: True
+    - require:
+      - user: bitcoin
+
+/home/bitcoin/.bitcoin/bitcoin.conf:
+  file.managed:
+    - source: salt://bitcoind/bitcoin.conf.jinja
+    - template: jinja
+    - defaults:
+        testnet: {{ pillar['services']['bitcoin']['testnet'] }}
+        rpcuser: {{ pillar['services']['bitcoin']['rpcuser'] }}
+        rpcpassword: {{ pillar['services']['bitcoin']['rpcpassword'] }}
+        admin_email: {{ pillar['admin_email'] }}
+
+/home/bitcoin/logs:
+  file.directory:
+    - user: bitcoin
+    - group: bitcoin
+    - mode: 750
+    - makedirs: True
+    - require:
+      - file: /home/bitcoin
+
+/etc/supervisor/conf.d/bitcoind.conf:
+  file.managed:
+    - source: salt://supervisor/generic.conf.jinja
+    - template: jinja
+    - defaults:
+        name: bitcoind
+        user: bitcoin
+        cwd: /home/bitcoin/
+        log_path: /home/bitcoin/logs/bitcoind.log
+        command: bitcoind
+    - watch_in:
+      - service: supervisor
+    - require:
+      - pkg: supervisor
+      - file: /home/bitcoin/logs

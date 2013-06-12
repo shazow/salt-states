@@ -1,0 +1,7 @@
+testnet={{ 1 if testnet else 0 }}
+rpcuser={{ rpcuser }}
+rpcpassword={{ rpcpassword }}
+alertnotify=echo %s | mail -s "Bitcoin Alert" {{ admin_email }}
+printtoconsole=1
+# TODO: walltnotify=
+

@@ -7,5 +7,6 @@ base:
     - supervisor
     - web.nginx
     - web.uwsgi
-    - db.postgresql
-    #- db.redis
+    #- db.postgresql
+    - db.redis
+    - bitcoind

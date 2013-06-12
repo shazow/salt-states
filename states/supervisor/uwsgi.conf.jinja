@@ -1,0 +1,9 @@
+[program:{{ name }}-uwsgi]
+directory={{ deploy_path }}
+user={{ user }}
+
+command=uwsgi -C -H {{ virtualenv_path }} -L -w wsgi --socket /tmp/{{ name }}-uwsgi.sock --master --processes 1 --pidfile  /tmp/{{ name }}-uwsgi.pid
+stdout_logfile={{ log_path }}
+redirect_stderr=true
+stopsignal=INT
+autorestart=true
