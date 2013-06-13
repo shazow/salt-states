@@ -1,5 +1,5 @@
 projects:
   - name: coinhooks
-    domain: coinhooks.com
+    domain: staging.coinhooks.com
     user: deploy
     group: www-data

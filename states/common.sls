@@ -8,6 +8,7 @@ packages:
       - git
       - htop
       - iptables
+      - libssl-dev
       - logrotate
       - lsof
       - mailutils
