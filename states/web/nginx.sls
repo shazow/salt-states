@@ -21,5 +21,7 @@ nginx:
         name: {{ project.name }}
         domain: {{ project.domain }}
         access_log: /home/{{ project.user }}/logs/{{ project.name }}/access.log
-        root_dir: /home/{{ project.user }}/public_html/{{ project.name }}/
+        root_dir: /home/{{ project.user }}/public_html/{{ project.name }}
+  file.symlink:
+    - target: /etc/nginx/sites-enabled/{{ project.name }}
 {% endfor %}
