@@ -25,6 +25,5 @@ nginx:
 
 /etc/nginx/sites-enabled/{{ project.name }}:
   file.symlink:
-    - name: /etc/nginx/sites-available/{{ project.name }}
-    - target: /etc/nginx/sites-enabled/{{ project.name }}
+    - target: /etc/nginx/sites-available/{{ project.name }}
 {% endfor %}
