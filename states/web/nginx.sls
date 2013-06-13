@@ -20,8 +20,8 @@ nginx:
     - defaults:
         name: {{ project.name }}
         domain: {{ project.domain }}
-        access_log: /home/{{ project.user }}/{{ project.name }}/logs/access.log
-        root_dir: /home/{{ project.user }}/{{ project.name }}/public_html
+        access_log: /home/{{ project.user }}/projects/{{ project.name }}/logs/access.log
+        root_dir: /home/{{ project.user }}/projects/{{ project.name }}/public_html
 
 /etc/nginx/sites-enabled/{{ project.name }}:
   file.symlink:
