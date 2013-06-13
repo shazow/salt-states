@@ -13,6 +13,14 @@
   user.present:
     - home: /home/{{ project.user }}
     - gid: {{ project.group }}
+  ssh_auth:
+    - present
+    - user: {{ project.user }}
+    - enc: ssh-rsa
+    - names:
+{% for ssh_key in pillar['ssh_pub_keys'] %}
+      - {{ ssh_key }}
+{% endfor %}
 
 /home/{{ project.user }}:
   file.directory:

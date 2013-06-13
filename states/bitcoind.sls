@@ -15,6 +15,7 @@ bitcoind:
 bitcoin:
   user.present:
     - home: /home/bitcoin
+    - gid: bitcoin
 
 /home/bitcoin:
   file.directory:
@@ -44,18 +45,7 @@ bitcoin:
     - require:
       - file: /home/bitcoin
 
-/etc/supervisor/conf.d/bitcoind.conf:
+/etc/init/bitcoind.conf:
   file.managed:
-    - source: salt://supervisor/generic.conf.jinja
+    - source: salt://bitcoind/init.conf.jinja
     - template: jinja
-    - defaults:
-        name: bitcoind
-        user: bitcoin
-        cwd: /home/bitcoin/
-        log_path: /home/bitcoin/logs/bitcoind.log
-        command: bitcoind
-    - watch_in:
-      - service: supervisor
-    - require:
-      - pkg: supervisor
-      - file: /home/bitcoin/logs
