@@ -15,11 +15,11 @@ server {
     gzip_disable "MSIE [1-6].(?!.*SV1)";
 
     location ~ ^/(robots.txt|favicon.ico)\$ {
-        root {{ root_dir }}/static
+        root {{ root_dir }}/static;
     }
 
     location /static {
-        root {{ root_dir }}
+        root {{ root_dir }};
         expires max;
         add_header Cache-Control "public";
     }
