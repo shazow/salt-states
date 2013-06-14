@@ -10,6 +10,7 @@ supervisor:
   file.managed:
     - source: salt://supervisor/uwsgi.conf.jinja
     - template: jinja
+    - mode: 600
     - defaults:
         name: {{ project.name }}
         user: {{ project.user }}

@@ -31,6 +31,7 @@ bitcoin:
 /home/bitcoin/.bitcoin/bitcoin.conf:
   file.managed:
     - source: salt://bitcoind/bitcoin.conf.jinja
+    - mode: 600
     - template: jinja
     - defaults:
         testnet: {{ pillar['services']['bitcoin']['testnet'] }}
@@ -51,3 +52,4 @@ bitcoin:
   file.managed:
     - source: salt://bitcoind/init.conf.jinja
     - template: jinja
+    - mode: 600
