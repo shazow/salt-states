@@ -1,8 +1,9 @@
 testnet={{ 1 if testnet else 0 }}
 server=1
+rpcssl=0
 rpcuser={{ rpcuser }}
 rpcpassword={{ rpcpassword }}
+rpcconnect=127.0.0.1
 alertnotify=echo %s | mail -s "Bitcoin Alert" {{ admin_email }}
 printtoconsole=1
-# TODO: walltnotify=
-
+walltnotify=/home/deploy/projects/coinhooks/env/bin/python /home/deploy/projects/coinhooks/deploy/bin/walletnotify.py /home/deploy/projects/coinhooks/deploy/production.ini %s
