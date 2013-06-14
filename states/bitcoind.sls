@@ -31,6 +31,8 @@ bitcoin:
 /home/bitcoin/.bitcoin/bitcoin.conf:
   file.managed:
     - source: salt://bitcoind/bitcoin.conf.jinja
+    - user: bitcoin
+    - group: bitcoin
     - mode: 600
     - template: jinja
     - defaults:
