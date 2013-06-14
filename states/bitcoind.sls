@@ -16,6 +16,8 @@ bitcoin:
   user.present:
     - home: /home/bitcoin
     - gid: bitcoin
+    - groups:
+      - www-data
 
 /home/bitcoin:
   file.directory:
