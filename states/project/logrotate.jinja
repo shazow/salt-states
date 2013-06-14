@@ -1,5 +1,5 @@
 {% for project in projects %}
-"/home/{{ project.user }}/projects/{{ project.name }}/logs/*.log":
+"/home/{{ project.user }}/projects/{{ project.name }}/logs/*.log" {
   copytruncate
   monthly
   rotate 12

@@ -62,7 +62,7 @@
 
 /home/{{ project.user }}/projects/{{ project.name }}/env:
   virtualenv.manage:
-    - prompt: {{ project.name }}
+    - prompt: ({{ project.name }}) 
     - runas: {{ project.user }}
     - require:
       - pkg: python-virtualenv
