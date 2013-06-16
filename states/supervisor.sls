@@ -49,6 +49,7 @@ supervisor:
         cwd: /home/{{ project.user }}/projects/{{ project.name }}
         log_path: /home/{{ project.user }}/projects/{{ project.name }}/logs/{{ daemon.name }}.log
         command: {{ daemon.command }}
+        environment:
     - watch_in:
       - service: supervisor
     - require:
