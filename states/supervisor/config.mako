@@ -2,7 +2,7 @@
 directory=${cwd}
 user=${user}
 
-environment=${','.join('='.join(kv) for kv in environment.iteritems())}
+environment=${','.join("%s='%s'" % (k, v) for k, v in environment.iteritems())}
 command=${command}
 
 stdout_logfile=${log_path}
