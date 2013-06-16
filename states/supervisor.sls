@@ -8,8 +8,8 @@ supervisor:
 {% for project in pillar['projects'] %}
 /etc/supervisor/conf.d/{{ project.name }}-uwsgi.conf:
   file.managed:
-    - source: salt://supervisor/generic.conf.jinja
-    - template: jinja
+    - source: salt://supervisor/config.mako
+    - template: mako
     - mode: 600
     - defaults:
         name: {{ project.name }}-uwsgi

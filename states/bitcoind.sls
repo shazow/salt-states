@@ -17,7 +17,7 @@ bitcoin:
     - home: /home/bitcoin
     - gid: bitcoin
     - groups:
-      - www-data
+      - www-data # Group membership for executing hooks defined by www-data users.
 
 /home/bitcoin:
   file.directory:
@@ -38,6 +38,8 @@ bitcoin:
     - defaults:
         testnet: {{ pillar['services']['bitcoin']['testnet'] }}
         rpcuser: {{ pillar['services']['bitcoin']['rpcuser'] }}
+        rpcport: {{ pillar['services']['bitcoin']['rpcport'] }}
+        walletnotify: {{ pillar['services']['bitcoin']['walletnotify'] }}
         rpcpassword: {{ pillar['services']['bitcoin']['rpcpassword'] }}
         admin_email: {{ pillar['admin_email'] }}
 
