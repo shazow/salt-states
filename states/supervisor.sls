@@ -36,7 +36,8 @@ supervisor:
       - cmd: /home/{{ project.user }}/projects/{{ project.name }}/repo
       - file: /home/{{ project.user }}/projects/{{ project.name }}/logs
 
-{% for daemon in project['daemons']:
+
+{% for daemon in project['daemons'] %}
 /etc/supervisor/conf.d/{{ project.name }}-{{ daemon.name }}.conf:
   file.managed:
     - source: salt://supervisor/config.mako
