@@ -60,8 +60,8 @@ bitcoin:
 
 /etc/supervisor/conf.d/bitcoind.conf:
   file.managed:
-    - source: salt://supervisor/generic.conf.jinja
-    - template: jinja
+    - source: salt://supervisor/config.mako
+    - template: mako
     - defaults:
         name: bitcoind
         user: bitcoin
