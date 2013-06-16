@@ -55,3 +55,22 @@ bitcoin:
     - source: salt://bitcoind/init.conf.jinja
     - template: jinja
     - mode: 600
+
+/etc/supervisor/conf.d/bitcoind.conf:
+  file.managed:
+    - source: salt://supervisor/generic.conf.jinja
+    - template: jinja
+    - defaults:
+        name: bitcoind
+        user: bitcoin
+        cwd: /home/bitcoin
+        log_path: /home/bitcoin/logs/bitcoind.log
+        command: bitcoind
+        environment:
+          USER: bitcoin
+          HOME: /home/bitcoin
+    - watch_in:
+      - service: supervisor
+    - require:
+      - pkg: supervisor
+      - file: /home/bitcoin/logs

@@ -9,4 +9,11 @@ services:
     testnet: True
     rpcuser: bitcoin
     rpcpassword: CHANGETHISPASSWORD
+    rpcport: 18338
+    walletnotify: /home/deploy/projects/coinhooks/env/bin/python /home/deploy/projects/coinhooks/deploy/bin/walletnotify.py /home/deploy/projects/coinhooks/deploy/production.ini %s
   redis:
+    port: 6379
+    host: 127.0.0.1
+    databases:
+      projects: 0
+      celery: 1
