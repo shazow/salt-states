@@ -35,4 +35,26 @@ supervisor:
       - virtualenv: /home/{{ project.user }}/projects/{{ project.name }}/env
       - cmd: /home/{{ project.user }}/projects/{{ project.name }}/repo
       - file: /home/{{ project.user }}/projects/{{ project.name }}/logs
+
+{% for daemon in project['daemons']:
+/etc/supervisor/conf.d/{{ project.name }}-{{ daemon.name }}.conf:
+  file.managed:
+    - source: salt://supervisor/config.mako
+    - template: mako
+    - mode: 600
+    - defaults:
+        name: {{ project.name }}-{{ daemon.name }}
+        user: {{ project.user }}
+        cwd: /home/{{ project.user }}/projects/{{ project.name }}
+        log_path: /home/{{ project.user }}/projects/{{ project.name }}/logs/{{ daemon.name }}.log
+        command: {{ daemon.command }}
+    - watch_in:
+      - service: supervisor
+    - require:
+      - pkg: supervisor
+      - virtualenv: /home/{{ project.user }}/projects/{{ project.name }}/env
+      - cmd: /home/{{ project.user }}/projects/{{ project.name }}/repo
+      - file: /home/{{ project.user }}/projects/{{ project.name }}/logs
+{% endfor %}
+
 {% endfor %}
