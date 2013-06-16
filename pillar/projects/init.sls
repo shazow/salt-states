@@ -6,4 +6,4 @@ projects:
     secret: CHANGETHISSECRET
     daemons:
       - name: celery
-        command: env/bin/pceleryd deploy/production.ini --concurrency=1
+        command: /home/deploy/projects/coinhooks/env/bin/pceleryd /home/deploy/projects/coinhooks/deploy/production.ini --concurrency=1
