@@ -15,7 +15,7 @@ bitcoind:
 bitcoin:
   user.present:
     - home: /home/bitcoin
-    - gid: bitcoin
+    - shell: /bin/bash
     - groups:
       - www-data # Group membership for executing hooks defined by www-data users.
 
@@ -27,6 +27,16 @@ bitcoin:
     - makedirs: True
     - require:
       - user: bitcoin
+
+/home/bitcoin/.bitcoin:
+  file.directory:
+    - user: bitcoin
+    - group: bitcoin
+    - mode: 750
+    - makedirs: True
+    - require:
+      - user: bitcoin
+      - file: /home/bitcoin
 
 /home/bitcoin/.bitcoin/bitcoin.conf:
   file.managed:

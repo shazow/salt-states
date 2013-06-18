@@ -9,9 +9,8 @@ Based on [https://gist.github.com/shazow/1210041](https://gist.github.com/shazow
 
 Fire up your machine and...
 
-1. [Install Salt](http://docs.saltstack.com/topics/installation/index.html):
-   `wget -O - http://bootstrap.saltstack.org | sudo sh`
-   (Or use your favourite package manager.)
+1. [Install Salt](http://docs.saltstack.com/topics/installation/index.html) and Mako (because we use a Mako templates for some things):
+   `sudo aptitude install salt-minion python-mako`
 
 2. Clone the Salt States: `git clone https://github.com/shazow/salt-states`
 

@@ -1,2 +1,4 @@
 uwsgi:
-  pip.installed
+  pip.installed:
+    - require:
+      - pkg: python

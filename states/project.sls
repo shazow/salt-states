@@ -12,6 +12,7 @@
 {{ project.user }}:
   user.present:
     - home: /home/{{ project.user }}
+    - shell: /bin/bash
     - gid: {{ project.group }}
   ssh_auth:
     - present
@@ -62,7 +63,7 @@
 
 /home/{{ project.user }}/projects/{{ project.name }}/env:
   virtualenv.manage:
-    - prompt: ({{ project.name }}) 
+    - prompt: "\"({{ project.name }}) \""
     - runas: {{ project.user }}
     - require:
       - pkg: python-virtualenv

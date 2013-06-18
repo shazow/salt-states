@@ -8,7 +8,6 @@ pillow-deps:
 
 pillow:
   pip.installed:
-    - name: pillow
     - require:
       - pkg: pillow-deps
       - pkg: python
@@ -16,7 +15,9 @@ pillow:
 python:
   pkg.installed:
     - names:
+      - python
       - python-dev
       - python-software-properties
       - python-virtualenv
       - python-pip
+      - python-mako

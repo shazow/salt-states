@@ -2,7 +2,9 @@
 directory=${cwd}
 user=${user}
 
-environment=${','.join("%s='%s'" % (k, v) for k, v in (environment or {}).iteritems())}
+% if environment:
+environment=${",".join("%s='%s'" % (k, v) for k, v in environment.iteritems())}
+% endif
 command=${command}
 
 stdout_logfile=${log_path}
