@@ -10,7 +10,7 @@ services:
     rpcuser: bitcoin
     rpcpassword: CHANGETHISPASSWORD
     rpcport: 18338
-    walletnotify: /home/deploy/projects/coinhooks/env/bin/python /home/deploy/projects/coinhooks/deploy/bin/walletnotify.py /home/deploy/projects/coinhooks/deploy/production.ini %s
+    walletnotify: "/home/deploy/projects/coinhooks/env/bin/python /home/deploy/projects/coinhooks/deploy/bin/walletnotify.py /home/deploy/projects/coinhooks/deploy/production.ini %s &> /home/deploy/projects/coinhooks/logs/walletnotify.log"
   redis:
     port: 6379
     host: 127.0.0.1
