@@ -55,7 +55,7 @@
   file.directory:
     - user: {{ project.user }}
     - group: {{ project.group }}
-    - mode: 750
+    - mode: 770
     - makedirs: True
     - require:
       - file: /home/{{ project.user }}/projects/{{ project.name }}
