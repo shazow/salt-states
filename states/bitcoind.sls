@@ -50,6 +50,7 @@ bitcoin:
         rpcuser: {{ pillar['services']['bitcoin']['rpcuser'] }}
         rpcport: {{ pillar['services']['bitcoin']['rpcport'] }}
         walletnotify: {{ pillar['services']['bitcoin']['walletnotify'] }}
+        blocknotify: {{ pillar['services']['bitcoin']['blocknotify'] }}
         rpcpassword: {{ pillar['services']['bitcoin']['rpcpassword'] }}
         admin_email: {{ pillar['admin_email'] }}
 
