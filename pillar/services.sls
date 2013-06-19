@@ -11,6 +11,7 @@ services:
     rpcpassword: CHANGETHISPASSWORD
     rpcport: 18338
     walletnotify: "/home/deploy/projects/coinhooks/env/bin/python /home/deploy/projects/coinhooks/deploy/bin/walletnotify.py /home/deploy/projects/coinhooks/deploy/production.ini %s"
+    blocknotify: "/home/deploy/projects/coinhooks/env/bin/python /home/deploy/projects/coinhooks/deploy/bin/blocknotify.py /home/deploy/projects/coinhooks/deploy/production.ini %s"
   redis:
     port: 6379
     host: 127.0.0.1
